@@ -2,15 +2,13 @@ import camelot
 
 
 # Works for good table like page3, page4
-# Bugs out on page1 where the table is not present
+# Bugs out on page1 where the table is not present and detects the figure as table
 # pdf2 some of the table are not detected
 for i in range(1, 6):
     try:
         pdf = camelot.read_pdf(
             f"pdfs/pdf{i}.pdf",
             pages="all",
-            # for table with border lines in background
-            process_background=True,
         )
 
         print("=====================================")

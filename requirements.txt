@@ -12,7 +12,7 @@ ghostscript==0.7
 kiwisolver==1.4.5
 matplotlib==3.8.4
 numpy==1.26.4
-opencv-python==4.9.0.80
+opencv-python-headless==4.9.0.80
 openpyxl==3.1.2
 packaging==24.0
 pandas==2.2.2
