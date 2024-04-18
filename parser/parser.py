@@ -1,6 +1,7 @@
 import os
 import camelot
 import logging
+import fitz # PyMuPDF
 
 
 # camelotLogger = logging.getLogger("camelot")
@@ -17,11 +18,22 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
+class ConversionBackend(object):
+    def convert(self, pdf_path, png_path, resolution=300):
+        doc = fitz.open(pdf_path)
+
+        print(f"pdf_path: {pdf_path}, png_path: {png_path}")
+
+        pix = doc[0].get_pixmap(dpi=resolution)
+        pix.save(png_path)
+
+
 kwargs = {
     "pages": "all",
     "suppress_stdout": False,
     # Don't make this very large or else text gets recognized as lines
     "line_scale": 25,
+    "backend": ConversionBackend(),
 }
 
 # Create csvs directory if it doesn't exist
